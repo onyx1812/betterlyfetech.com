@@ -1,0 +1,82 @@
+@charset "UTF-8";
+.fb_testimonials {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 0 30px; }
+  .fb_testimonials-post {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .fb_testimonials-post:not(:first-child) {
+      margin-top: 15px; }
+  .fb_testimonials-img {
+    margin-right: 15px; }
+  .fb_testimonials-img img {
+    width: 32px; }
+  .fb_testimonials-inner {
+    background: #eff1f3;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 135%;
+    color: #1d2129;
+    padding: 7px 10px;
+    position: relative; }
+  .fb_testimonials-inner span {
+    margin-right: 5px;
+    font-weight: 600;
+    color: #365899; }
+  .fb_testimonials-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 15px; }
+  .fb_testimonials-list li {
+    color: #90949c;
+    font-size: 12px;
+    line-height: 18px; }
+    .fb_testimonials-list li:not(:first-child):before {
+      content: "·";
+      color: #365899;
+      margin: 0 5px; }
+  .fb_testimonials-list li a {
+    color: #365899;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none; }
+  .fb_testimonials-bom {
+    position: absolute;
+    bottom: -8px;
+    right: -10px;
+    font-size: 12px;
+    height: 20px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    line-height: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .fb_testimonials-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-size: 12px 12px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin-left: -10px; }
+    .fb_testimonials-icon--like {
+      background-image: url("./../../img/like.png");
+      z-index: 3; }
+    .fb_testimonials-icon--wow {
+      background-image: url("./../../img/wow.png");
+      z-index: 2; }
+    .fb_testimonials-icon--love {
+      background-image: url("./../../img/love.png");
+      z-index: 1; }
+  .fb_testimonials-num {
+    margin-left: 1px;
+    margin-right: 4px;
+    color: #777d88;
+    font-size: 11px; }

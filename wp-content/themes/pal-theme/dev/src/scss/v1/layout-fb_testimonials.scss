@@ -1,0 +1,96 @@
+.fb_testimonials{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 0 30px;
+  &-post{
+    display: flex;
+    &:not(:first-child){
+      margin-top: 15px;
+    }
+  }
+  &-img{
+    margin-right: 15px;
+  }
+  &-img img{
+    width: 32px;
+  }
+  &-wrap{}
+  &-name{}
+  &-inner{
+    background: #eff1f3;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 135%;
+    color: #1d2129;
+    padding: 7px 10px;
+    position: relative;
+  }
+  &-inner img{}
+  &-inner span{
+    margin-right: 5px;
+    font-weight: 600;
+    color: #365899;
+  }
+  &-list{
+    display: flex;
+    padding-left: 15px;
+  }
+  &-list li{
+    color: #90949c;
+    font-size: 12px;
+    line-height: 18px;
+    &:not(:first-child){
+      &:before{
+        content:"·";
+        color: #365899;
+        margin: 0 5px;
+      }
+    }
+  }
+  &-list li a{
+    color: #365899;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+  &-bom{
+    position: absolute;
+    bottom: -8px;
+    right: -10px;
+    font-size: 12px;
+    height: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
+    border-radius: 10px;
+    line-height: 20px;
+    display: flex;
+  }
+  &-icon{
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-size: 12px 12px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin-left: -10px;
+    &--like{
+      background-image: url('./../../img/like.png');
+      z-index: 3;
+    }
+    &--wow{
+      background-image: url('./../../img/wow.png');
+      z-index: 2;
+    }
+    &--love{
+      background-image: url('./../../img/love.png');
+      z-index: 1;
+    }
+  }
+  &-num{
+    margin-left: 1px;
+    margin-right: 4px;
+    color: #777d88;
+    font-size: 11px;
+  }
+}

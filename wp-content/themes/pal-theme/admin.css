@@ -1,0 +1,81 @@
+.acf-flexible-content .layout .acf-fc-layout-handle {
+  background: #23282d;
+  color: #fff;
+}
+
+.acf-fields>.acf-tab-wrap .acf-tab-group li a {
+  background: #23282d;
+  color: #fff;
+}
+
+.acf-fields>.acf-tab-wrap .acf-tab-group li.active a{
+  color: #23282d;
+}
+
+.acf-fields>.acf-tab-wrap .acf-tab-group li a:hover{
+  color: #23282d;
+}
+
+.acf-tab-group li a{
+  border-color: #23282d;
+}
+
+.acf-flexible-content .layout {
+  border-color: #23282d;
+  background: rgba(35, 40, 45, .2);
+  border-radius: 8px;
+  /*box-shadow: -2px 2px 6px 0 rgba(35, 40, 45, .6);*/
+  overflow: hidden;
+}
+
+.acf-field textarea{
+  height: 200px !important;
+  resize: none;
+  border-color: #23282d;
+  border-radius: 4px;
+}
+
+.acf-field select, #wpbody select,
+.acf-input-prepend, .acf-input-append, .acf-input-wrap,
+.acf-field input[type="text"],
+.acf-field input[type="number"],
+.acf-field input[type="text"]{
+  height: 40px;
+  border-color: #23282d;
+}
+
+.acf-field input[type="text"],
+.acf-field input[type="number"],
+.acf-field input[type="text"]{
+  border-radius: 4px;
+}
+
+.acf-field select, #wpbody select{
+  border-radius: 4px;
+}
+
+.wp-picker-container .wp-color-result.button{
+  height: 40px;
+  border-color: #23282d;
+}
+.wp-picker-container .wp-color-result.button span{
+  height: 38px;
+  line-height: 38px;
+}
+
+.acf-input-prepend, .acf-input-append {
+  line-height: 30px;
+}
+
+.acf-repeater > table{
+  border-color: #23282d;
+}
+
+.acf-table > thead > tr > th{
+  background: rgba(35, 40, 45, 1);
+  color: #fff;
+}
+
+.acf-table > thead > tr > td{
+  background: rgba(35, 40, 45, .2);
+}

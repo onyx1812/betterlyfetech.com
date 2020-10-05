@@ -1,0 +1,56 @@
+@import 'base/all';
+@import 'partials/header';
+@import 'partials/footer';
+
+.page404{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: 60px;
+	line-height: 1;
+	color: #000;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 60px;
+	span{
+		display: block;
+		font-size: 125px;
+	}
+}
+h2{
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 1;
+	color: #000;
+	text-align: center;
+	margin-bottom: 45px;
+}
+
+.btn{
+	background: linear-gradient(107deg,#38ef7d 0%,#11998e 100%);
+	border-radius: 80px;
+	display: block;
+	height: 80px;
+	line-height: 80px;
+	text-decoration: none;
+	color: white;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 20px;
+	width: 300px;
+	text-align: center;
+	max-width: 100%;
+	transition: opacity .3s ease;
+	&:hover {
+		opacity: .9;
+	}
+}

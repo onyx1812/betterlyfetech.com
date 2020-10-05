@@ -1,0 +1,1 @@
+let images=document.querySelectorAll("img[data-src]");function winPosition(){let i=window.scrollY+window.outerHeight;for(var e=0;e<images.length;e++)i>=images[e].offsetTop&&(images[e].src=images[e].dataset.src)}window.addEventListener("scroll",winPosition),window.addEventListener("load",winPosition);

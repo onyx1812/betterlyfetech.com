@@ -1,0 +1,55 @@
+.compare {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  margin-bottom: 30px; }
+  .compare thead th {
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    vertical-align: middle;
+    width: 50%; }
+    @media (min-width: 768px) {
+      .compare thead th {
+        font-size: 20px; } }
+    .compare thead th img {
+      display: inline-block;
+      vertical-align: middle; }
+      @media (max-width: 768px) {
+        .compare thead th img {
+          width: 100px; } }
+    .compare thead th:first-child {
+      text-align: right;
+      padding-right: 15px; }
+    .compare thead th:last-child {
+      text-align: left;
+      padding-left: 15px; }
+  .compare tbody td {
+    font-size: 12px;
+    line-height: 1.4;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #ccc; }
+    @media (min-width: 768px) {
+      .compare tbody td {
+        font-size: 16px;
+        line-height: 45px; } }
+  .compare tbody td:first-child {
+    text-align: right;
+    padding-right: 45px;
+    background: url("../../img/tick.svg") no-repeat calc(100% - 15px) center/25px auto; }
+  .compare tbody td:last-child {
+    text-align: left;
+    padding-left: 45px;
+    background: url("../../img/criss-cross.svg") no-repeat 15px center/25px auto; }
+  .compare tbody:before, .compare tbody:after {
+    content: "-";
+    display: block;
+    line-height: 1em;
+    color: transparent; }
+  .compare tbody tr:first-child td {
+    border: none; }
