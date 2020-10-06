@@ -152,7 +152,7 @@
         if(UNIQ_USER){
           addClickFunc();
         }
-        // window.location.href = newLink;
+        window.location.href = newLink;
       });
     });
   </script>
