@@ -38,6 +38,32 @@
   }
 </script>
 
+<script>
+  const addClickFunc = () => {
+    var formData = new FormData();
+
+    formData.append("action", "addClick");
+    formData.append("post_id", <?php echo get_the_ID(); ?>);
+
+    var request = new XMLHttpRequest();
+    request.open('POST', '<?php echo AJAX_URL; ?>', true);
+
+    request.onload = function() {
+      if (this.status >= 200 && this.status < 400) {
+        console.log(this.response);
+      } else {
+        console.log(this.response);
+      }
+    };
+
+    request.onerror = function() {
+      console.log(this.response);
+    };
+
+    request.send(formData);
+  }
+</script>
+
 <?php if( get_field('preloader') ): ?>
   <div id="preloader" class="preloader hide">
     <div class="preloader-inner">
@@ -83,43 +109,50 @@
           activeItem.nextElementSibling.classList.add('active');
           preloaderProgress.value = preloaderProgress.value + 20;
       }
+      if(UNIQ_USER){
+        addClickFunc();
+      }
     }
 
 
   </script>
-	<?php if( get_field('no_img_links') ): ?>
-		<script>
-			let textLinks = document.querySelectorAll('.content a[href], [data-url]');
-			textLinks.forEach( link => {
-			  link.addEventListener('click', e => {
-				e.preventDefault();
-				openPreloader();
-			  });
-			});
-		</script>
-	<?php else: ?>
-		<script>
-			let textLinks = document.querySelectorAll('.content a[href], [data-url], .content img');
-			textLinks.forEach( link => {
-			  link.addEventListener('click', e => {
-				e.preventDefault();
-				openPreloader();
-			  });
-			});
-		</script>
+  <?php if( get_field('no_img_links') ): ?>
+    <script>
+      let textLinks = document.querySelectorAll('.content a[href], [data-url]');
+      textLinks.forEach( link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          openPreloader();
+        });
+      });
+    </script>
+  <?php else: ?>
+    <script>
+      let textLinks = document.querySelectorAll('.content a[href], [data-url], .content img');
+      textLinks.forEach( link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          openPreloader();
+        });
+      });
+    </script>
 
-	<?php endif; ?>
+  <?php endif; ?>
 <?php else: ?>
   <script>
-    let textLinks = document.querySelectorAll('.content a[href], [data-url]');
-    for (var i = 0; i < textLinks.length; i++) {
-      textLinks[i].href = newLink;
-    }
-    let imgs = document.querySelectorAll('.content img');
-    imgs.forEach(image => {
-      image.addEventListener('click', e => {
+    // let textLinks = document.querySelectorAll('.content a[href], [data-url]');
+    // for (var i = 0; i < textLinks.length; i++) {
+    //   textLinks[i].href = newLink;
+    // }
+    let links = document.querySelectorAll('.content a[href], [data-url], .content img');
+    links.forEach(link => {
+      link.addEventListener('click', e => {
         e.preventDefault();
-        window.location.href = newLink;
+        console.log(UNIQ_USER);
+        if(UNIQ_USER){
+          addClickFunc();
+        }
+        // window.location.href = newLink;
       });
     });
   </script>

@@ -49,5 +49,7 @@
     </script>
   <?php endif; ?>
 
+    <?php get_template_part( 'partials/mg', 'analitics' ); ?>
+
   </body>
 </html>

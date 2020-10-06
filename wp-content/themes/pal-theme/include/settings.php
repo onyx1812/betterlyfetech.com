@@ -3,6 +3,7 @@
 //default links
 define('ROOT', get_template_directory_uri());
 define('IMG', ROOT . '/img');
+define('AJAX_URL', admin_url('admin-ajax.php'));
 
 function CSS(){
   echo ROOT . '/css';
