@@ -6,6 +6,8 @@ get_header();
   while ( have_posts() ) : the_post();
 ?>
 
+<?php get_template_part( 'partials/mg', 'analitics' ); ?>
+
 <section class="content content--page">
   <div class="container">
     <div class="row">
