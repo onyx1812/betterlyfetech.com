@@ -38,7 +38,7 @@
   }
 </script>
 
-<script>
+<!-- <script>
   const addClickFunc = () => {
     var formData = new FormData();
 
@@ -62,7 +62,7 @@
 
     request.send(formData);
   }
-</script>
+</script> -->
 
 <?php if( get_field('preloader') ): ?>
   <div id="preloader" class="preloader hide">
@@ -109,9 +109,9 @@
           activeItem.nextElementSibling.classList.add('active');
           preloaderProgress.value = preloaderProgress.value + 20;
       }
-      if(UNIQ_USER){
-        addClickFunc();
-      }
+      // if(UNIQ_USER){
+      //   addClickFunc();
+      // }
     }
 
 
@@ -148,10 +148,10 @@
     links.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
-        console.log(UNIQ_USER);
-        if(UNIQ_USER){
-          addClickFunc();
-        }
+        // console.log(UNIQ_USER);
+        // if(UNIQ_USER){
+        //   addClickFunc();
+        // }
         window.location.href = newLink;
       });
     });
