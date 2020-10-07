@@ -1,13 +1,11 @@
 <?php
 
-
 /*------------------------------
   START create_tables
 ------------------------------*/
 function create_tables() {
   global $wpdb;
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-  // Table analytics_pages
   $table_analytics_pages = $wpdb->prefix . "analytics_pages";
   $table_analytics_pages_sql = "CREATE TABLE {$table_analytics_pages} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -19,7 +17,8 @@ function create_tables() {
     UNIQUE KEY id (id)
   ) {$charset_collate};";
   dbDelta($table_analytics_pages_sql);
-} create_tables();
+}
+// create_tables();
 /*------------------------------
   END create_tables
 ------------------------------*/
@@ -64,7 +63,8 @@ function add_pages(){
     );
   }
 
-} add_pages();
+}
+// add_pages();
 /*------------------------------
   END add_pages
 ------------------------------*/
@@ -73,13 +73,9 @@ function add_pages(){
   START table_analytics_fun
 ------------------------------*/
 function table_analytics_fun(){
-
   global $wpdb;
-
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
   $page_ID = get_the_ID();
-
   if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
     $ip = $_SERVER['HTTP_CLIENT_IP'];
   } elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
@@ -87,9 +83,7 @@ function table_analytics_fun(){
   } else {
     $ip = $_SERVER['REMOTE_ADDR'];
   }
-
   $user_ip = apply_filters( 'wpb_get_ip', $ip );
-
   $date = date('Y-m-d H:i:s');
   $table_analytics_pages = $wpdb->prefix . "analytics_pages";
   $page_data = $wpdb->get_results("SELECT * FROM $table_analytics_pages WHERE page_id = $page_ID");
@@ -144,4 +138,4 @@ function table_analytics_fun(){
   }
 
 }
-table_analytics_fun();
+// table_analytics_fun();

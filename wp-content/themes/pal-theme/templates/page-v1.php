@@ -104,8 +104,6 @@ get_header();
   </div>
 </section>
 
-<?php get_template_part( 'partials/page', 'options' ); ?>
-
 <script>
 const
   MonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],

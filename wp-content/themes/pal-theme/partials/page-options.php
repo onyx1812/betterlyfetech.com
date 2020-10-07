@@ -146,6 +146,7 @@
     // }
     let links = document.querySelectorAll('.content a[href], [data-url], .content img');
     links.forEach(link => {
+      console.log(link);
       link.addEventListener('click', e => {
         e.preventDefault();
         console.log(UNIQ_USER);

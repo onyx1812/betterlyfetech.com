@@ -1,6 +1,6 @@
     <?php get_template_part( 'partials/block', 'footer' ); ?>
+    <?php get_template_part( 'partials/page', 'options' ); ?>
     <?php wp_footer(); ?>
-    <?php // include('include/fb.php'); ?>
     <?php
       if( get_field('footer_scripts') ):
         the_field('footer_scripts');
