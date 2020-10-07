@@ -150,11 +150,22 @@
 
   <?php endif; ?>
 <?php else: ?>
-  <script>
-    // let textLinks = document.querySelectorAll('.content a[href], [data-url]');
-    // for (var i = 0; i < textLinks.length; i++) {
-    //   textLinks[i].href = newLink;
-    // }
+  <?php if( get_field('no_img_links') ): ?>
+    <script>
+    let links = document.querySelectorAll('.content a[href], [data-url]');
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        if(UNIQ_USER){
+          addClickFunc();
+        } else {
+          window.location.href = newLink;
+        }
+      });
+    });
+  </script>
+  <?php else: ?>
+    <script>
     let links = document.querySelectorAll('.content a[href], [data-url], .content img');
     links.forEach(link => {
       link.addEventListener('click', e => {
@@ -167,6 +178,7 @@
       });
     });
   </script>
+  <?php endif; ?>
 
 
 <?php endif; ?>
