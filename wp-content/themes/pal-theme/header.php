@@ -27,9 +27,9 @@
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     </script>
-
+<!-- 111 -->
     <?php wp_head(); ?>
-
+<!-- 222 -->
     <?php
       if( get_field('header_scripts') ):
         the_field('header_scripts');
