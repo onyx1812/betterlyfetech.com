@@ -102,6 +102,8 @@
           setTimeout(()=>{
             if(UNIQ_USER){
               addClickFunc();
+            } else {
+              window.location.href = newLink;
             }
           }, 500);
       }, 4 * intervalTime);
@@ -150,6 +152,8 @@
         e.preventDefault();
         if(UNIQ_USER){
           addClickFunc();
+        } else {
+          window.location.href = newLink;
         }
       });
     });
