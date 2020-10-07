@@ -98,7 +98,7 @@ function show_analytics($page_id){
     $unique_clicks_conversion = intval($unique_clicks) / intval($unique_visitors) * 100;
     $unique_clicks_conversion_today = intval($unique_clicks_today) / intval($unique_visitors_today) * 100;
     $current_user = wp_get_current_user();
-    // if( user_can( $current_user, 'administrator' ) ){
+    if( user_can( $current_user, 'administrator' ) ){
       echo '<script>
         console.log("Page Analytics: --------------------------");
         console.log("Page activity - '.$page_activity.'");
@@ -111,7 +111,7 @@ function show_analytics($page_id){
         console.log("Unique clicks - '.$unique_clicks_today.'");
         console.log("Unique clicks conversion - '.$unique_clicks_conversion_today.'%");
       </script>';
-    // }
+    }
   }
 }
 
