@@ -58,7 +58,7 @@ function add_ip($page_id, $ip){
       array( 'activity' => $activity ),
       array( 'ip' => $ip )
     );
-    echo '<script>console.log("CLICK - '.$ip_data[0]->click.'");</script>';
+
     if($ip_data[0]->click){
       $unique = 'false';
     } else {
