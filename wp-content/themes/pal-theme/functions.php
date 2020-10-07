@@ -34,15 +34,17 @@ function addClick(){
   $ip = $_POST['ip'];
   $table = $wpdb->prefix . "analitics_page_$post_id";
   $date = new DateTime();
-  $result = $wpdb->update($table,
+  if( $wpdb->update($table,
     array(
       'click_date' => $date->format('Y-m-d H:i:s'),
       'click' => true
     ),
     array('ip' => $ip)
-  );
-
-  return json_encode($result);
+  )){
+    echo "success";
+  } else {
+    echo "fail";
+  }
 
   wp_die();
 }

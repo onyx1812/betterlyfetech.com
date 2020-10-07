@@ -51,14 +51,14 @@
 
     request.onload = function() {
       if (this.status >= 200 && this.status < 400) {
-        console.log(this.response);
+        window.location.href = newLink;
       } else {
-        console.log(this.response);
+        window.location.href = newLink;
       }
     };
 
     request.onerror = function() {
-      console.log(this.response);
+      window.location.href = newLink;
     };
 
     request.send(formData);
@@ -100,7 +100,9 @@
           clearInterval(preloaderInterval);
           preloader.classList.add('hide');
           setTimeout(()=>{
-            window.location.href = newLink;
+            if(UNIQ_USER){
+              addClickFunc();
+            }
           }, 500);
       }, 4 * intervalTime);
 
@@ -109,9 +111,6 @@
           activeItem.classList.remove('active');
           activeItem.nextElementSibling.classList.add('active');
           preloaderProgress.value = preloaderProgress.value + 20;
-      }
-      if(UNIQ_USER){
-        addClickFunc();
       }
     }
 
@@ -152,9 +151,6 @@
         if(UNIQ_USER){
           addClickFunc();
         }
-        setTimeout(()=>{
-          window.location.href = newLink;
-        }, 250);
       });
     });
   </script>
