@@ -152,7 +152,9 @@
         if(UNIQ_USER){
           addClickFunc();
         }
-        // window.location.href = newLink;
+        setTimeout(()=>{
+          window.location.href = newLink;
+        }, 250);
       });
     });
   </script>
