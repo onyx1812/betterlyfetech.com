@@ -130,4 +130,9 @@ if( in_array($page_ID, $pages) ){
   add_ip($page_ID, $user_ip);
   show_analytics($page_ID);
 
+} else {
+  echo '<script>
+    const UNIQ_USER = false;
+    const USER_IP = false;
+  </script>';
 }
