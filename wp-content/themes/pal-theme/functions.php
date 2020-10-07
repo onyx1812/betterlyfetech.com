@@ -49,4 +49,4 @@ function addClick(){
   wp_die();
 }
 add_action('wp_ajax_addClick', 'addClick');
-add_action('wp_ajax_nopriv_addClickt', 'addClick');
+add_action('wp_ajax_nopriv_addClick', 'addClick');
