@@ -51,14 +51,23 @@
 
     request.onload = function() {
       if (this.status >= 200 && this.status < 400) {
-        window.location.href = newLink;
+        console.log(this.response);
+        setTimeout(()=>{
+          window.location.href = newLink;
+        }, 1000);
       } else {
-        window.location.href = newLink;
+        console.log(this.response);
+        setTimeout(()=>{
+          window.location.href = newLink;
+        }, 1000);
       }
     };
 
     request.onerror = function() {
-      window.location.href = newLink;
+      console.log(this.response);
+        setTimeout(()=>{
+          window.location.href = newLink;
+        }, 1000);
     };
 
     request.send(formData);
