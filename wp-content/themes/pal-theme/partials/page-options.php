@@ -38,12 +38,13 @@
   }
 </script>
 
-<!-- <script>
+<script>
   const addClickFunc = () => {
     var formData = new FormData();
 
     formData.append("action", "addClick");
     formData.append("post_id", <?php echo get_the_ID(); ?>);
+    formData.append("ip", USER_IP);
 
     var request = new XMLHttpRequest();
     request.open('POST', '<?php echo AJAX_URL; ?>', true);
@@ -62,7 +63,7 @@
 
     request.send(formData);
   }
-</script> -->
+</script>
 
 <?php if( get_field('preloader') ): ?>
   <div id="preloader" class="preloader hide">
@@ -109,9 +110,9 @@
           activeItem.nextElementSibling.classList.add('active');
           preloaderProgress.value = preloaderProgress.value + 20;
       }
-      // if(UNIQ_USER){
-      //   addClickFunc();
-      // }
+      if(UNIQ_USER){
+        addClickFunc();
+      }
     }
 
 
@@ -148,11 +149,10 @@
     links.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
-        // console.log(UNIQ_USER);
-        // if(UNIQ_USER){
-        //   addClickFunc();
-        // }
-        window.location.href = newLink;
+        if(UNIQ_USER){
+          addClickFunc();
+        }
+        // window.location.href = newLink;
       });
     });
   </script>

@@ -30,16 +30,16 @@ add_action( 'wp_enqueue_scripts', 'front_scripts' );
 function addClick(){
   global $wpdb;
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-  $page_ID = $_POST['post_id'];
-  $table_analytics_pages = $wpdb->prefix . "analytics_pages";
-
-  $page_data = $wpdb->get_results("SELECT * FROM $table_analytics_pages WHERE page_id = $page_ID");
-  $page_clicks = intval($page_data[0]->page_clicks) + 1;
-  $result = $wpdb->update($table_analytics_pages,
+  $post_id = $_POST['post_id'];
+  $ip = $_POST['ip'];
+  $table = $wpdb->prefix . "analitics_page_$post_id";
+  $date = new DateTime();
+  $result = $wpdb->update($table,
     array(
-      'page_clicks' => $page_clicks
+      'click_date' => $date->format('Y-m-d H:i:s'),
+      'click' => true
     ),
-    array( 'page_id' => $page_ID )
+    array('ip' => $ip)
   );
 
   return json_encode($result);

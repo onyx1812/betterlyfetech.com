@@ -1,141 +1,127 @@
 <?php
 
-/*------------------------------
-  START create_tables
-------------------------------*/
-function create_tables() {
+function create_table($table_name) {
   global $wpdb;
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-  $table_analytics_pages = $wpdb->prefix . "analytics_pages";
-  $table_analytics_pages_sql = "CREATE TABLE {$table_analytics_pages} (
+  $table = $wpdb->prefix . "analitics_page_$table_name";
+  $charset_collate = $wpdb->get_charset_collate();
+  $table_sql = "CREATE TABLE {$table} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
-    page_id int(11) DEFAULT 0,
-    page_visitors int(11) DEFAULT 0,
-    page_activity int(11) DEFAULT 0,
-    page_clicks int(11) DEFAULT 0,
-    page_ips LONGTEXT NOT NULL,
+    ip text NOT NULL,
+    date datetime,
+    click boolean DEFAULT false,
+    click_date datetime,
+    activity int(11) DEFAULT 0,
     UNIQUE KEY id (id)
   ) {$charset_collate};";
-  dbDelta($table_analytics_pages_sql);
+  dbDelta($table_sql);
 }
-// create_tables();
-/*------------------------------
-  END create_tables
-------------------------------*/
-/*------------------------------
-  START add_pages
-------------------------------*/
-function add_pages(){
 
+// function create_tables_template_pages($template_name){
+//   $pages = get_pages([
+//     'meta_key' => '_wp_page_template',
+//     'meta_value' => $template_name //'templates/page-v1.php'
+//   ]);
+//   foreach ($pages as $page) {
+//     create_table($page->ID);
+//   }
+// }
+
+$pages = [1493, 1592, 1604, 1609, 1612, 956, 1299, 1298];
+foreach ($pages as $page) {
+  create_table($page);
+}
+
+function add_ip($page_id, $ip){
   global $wpdb;
-
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+  $table = $wpdb->prefix . "analitics_page_$page_id";
 
-  $page_ID = get_the_ID();
+  $ip_data = $wpdb->get_results("SELECT * FROM $table WHERE ip = '$ip'");
 
-  $args = array(
-    'meta_key' => '_wp_page_template',
-    'meta_value' => 'templates/page-v1.php'
-  );
-
-  $table_analytics_pages = $wpdb->prefix . "analytics_pages";
-
-  $get_template_pages_id = get_pages($args);
-  $get_template_pages_id_arr = array();
-  foreach ($get_template_pages_id as $page) {
-    array_push($get_template_pages_id_arr, $page->ID);
-  }
-
-  $get_pages_id = $wpdb->get_results("SELECT page_id FROM $table_analytics_pages");
-  $get_pages_id_arr = array();
-  foreach ($get_pages_id as $page) {
-    array_push($get_pages_id_arr, $page->page_id);
-  }
-
-  $new_pages = array_diff($get_template_pages_id_arr, $get_pages_id_arr);
-  $arr = array();
-  foreach ($new_pages as $id) {
-    $wpdb->insert($table_analytics_pages,
+  if(empty($ip_data)){
+    $date = new DateTime();
+    $wpdb->insert($table,
       array(
-        'page_id' => $id,
-        'page_ips' => json_encode($arr)
+        'ip' => $ip,
+        'date' => $date->format('Y-m-d H:i:s'),
+        'activity' => 1
       )
     );
+    echo '<script>
+    const UNIQ_USER = true;
+    const USER_IP = "'.$ip.'";
+    </script>';
+  } else {
+    $activity = $ip_data[0]->activity + 1;
+    $wpdb->update($table,
+      array( 'activity' => $activity ),
+      array( 'ip' => $ip )
+    );
+    if($ip_data[0]->click === 0){
+      $unique = 'true';
+    } else {
+      $unique = 'false';
+    }
+    echo '<script>
+    const UNIQ_USER = '.$unique.';
+    const USER_IP = "'.$ip.'";
+    </script>';
   }
-
 }
-// add_pages();
-/*------------------------------
-  END add_pages
-------------------------------*/
 
-/*------------------------------
-  START table_analytics_fun
-------------------------------*/
-function table_analytics_fun(){
+function show_analytics($page_id){
   global $wpdb;
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-  $page_ID = get_the_ID();
-  if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-    $ip = $_SERVER['HTTP_CLIENT_IP'];
-  } elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-  } else {
-    $ip = $_SERVER['REMOTE_ADDR'];
-  }
-  $user_ip = apply_filters( 'wpb_get_ip', $ip );
-  $date = date('Y-m-d H:i:s');
-  $table_analytics_pages = $wpdb->prefix . "analytics_pages";
-  $page_data = $wpdb->get_results("SELECT * FROM $table_analytics_pages WHERE page_id = $page_ID");
-  $page_ips = json_decode($page_data[0]->page_ips);
-  $page_activity = intval($page_data[0]->page_activity) + 1;
-  $page_clicks = $page_data[0]->page_clicks;
-  if( count($page_ips) > 0 ){
-    foreach ($page_ips as $ip) {
-      if($ip !== $user_ip){
-        $push_ip = true;
-        break;
-      } else {
-        $push_ip = false;
-      }
+  $table = $wpdb->prefix . "analitics_page_$page_id";
+
+  $page_data = $wpdb->get_results("SELECT * FROM $table");
+  $page_data_today = $wpdb->get_results("SELECT * FROM $table WHERE date(click_date) = CURDATE()");
+  $page_data_today_visitors = $wpdb->get_results("SELECT * FROM $table WHERE date(date) = CURDATE()");
+
+  if(!empty($page_data)){
+    $unique_visitors = count($page_data);
+    $page_activity = 0;
+    $unique_clicks = 0;
+    foreach ($page_data as $page) {
+      $unique_clicks = intval($unique_clicks) + $page->click;
+      $page_activity = intval($page_activity) + $page->activity;
     }
-    if($push_ip){
-      array_push($page_ips, $user_ip);
+
+    $unique_visitors_today = count($page_data_today_visitors);
+    $unique_clicks_today = 0;
+    foreach ($page_data_today as $page) {
+      $unique_clicks_today = intval($unique_clicks_today) + $page->click;
     }
-    $page_ips_arr = $page_ips;
-  } else {
-    $page_ips_arr = array($user_ip);
+
+    $unique_clicks_conversion = intval($unique_clicks) / intval($unique_visitors) * 100;
+    $unique_clicks_conversion_today = intval($unique_clicks_today) / intval($unique_visitors_today) * 100;
+    $current_user = wp_get_current_user();
+    if( user_can( $current_user, 'administrator' ) ){
+      echo '<script>
+        console.log("Page Analytics: --------------------------");
+        console.log("Page activity - '.$page_activity.'");
+        console.log("All time: --------------------------------");
+        console.log("Unique visitors - '.$unique_visitors.'");
+        console.log("Unique clicks - '.$unique_clicks.'");
+        console.log("Unique clicks conversion - '.$unique_clicks_conversion.'%");
+        console.log("Today: -----------------------------------");
+        console.log("Unique visitors - '.$unique_visitors_today.'");
+        console.log("Unique clicks - '.$unique_clicks_today.'");
+        console.log("Unique clicks conversion - '.$unique_clicks_conversion_today.'%");
+      </script>';
+    }
   }
-  $wpdb->update($table_analytics_pages,
-    array(
-      'page_visitors' => count($page_ips_arr),
-      'page_activity' => $page_activity,
-      'page_ips' => json_encode($page_ips_arr)
-    ),
-    array( 'page_id' => $page_ID )
-  );
-
-  $page_visitors = count($page_ips_arr);
-  $page_clicks_conversion = intval($page_clicks) / intval($page_visitors) * 100;
-  $current_user = wp_get_current_user();
-  if( user_can( $current_user, 'administrator' ) ):
-    echo '<script>
-      console.log("Page visitors - '.$page_visitors.'");
-      console.log("Page activity - '.$page_activity.'");
-      console.log("Page clicks - '.$page_clicks.'");
-      console.log("Page clicks conversion - '.$page_clicks_conversion.'%");
-    </script>';
-  endif;
-
-  if( count($page_ips) !== count($page_ips_arr) ){
-    echo '<script>
-      const UNIQ_USER = true;
-    </script>';
-  } else {
-    echo '<script>
-      const UNIQ_USER = false;
-    </script>';
-  }
-
 }
-// table_analytics_fun();
+
+$page_ID = get_the_ID();
+if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+  $ip = $_SERVER['HTTP_CLIENT_IP'];
+} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+  $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+  $ip = $_SERVER['REMOTE_ADDR'];
+}
+$user_ip = apply_filters( 'wpb_get_ip', $ip );
+add_ip($page_ID, $user_ip);
+show_analytics($page_ID);
