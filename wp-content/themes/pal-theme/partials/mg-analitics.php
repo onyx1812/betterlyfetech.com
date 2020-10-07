@@ -58,10 +58,10 @@ function add_ip($page_id, $ip){
       array( 'activity' => $activity ),
       array( 'ip' => $ip )
     );
-    if($ip_data[0]->click === 0){
-      $unique = 'true';
-    } else {
+    if($ip_data[0]->click){
       $unique = 'false';
+    } else {
+      $unique = 'true';
     }
     echo '<script>
     const UNIQ_USER = '.$unique.';
