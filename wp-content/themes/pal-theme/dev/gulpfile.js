@@ -46,7 +46,7 @@ gulp.task('images', function () {
 
 gulp.task('browser-sync', ['sass', 'js'], function() {
 	browserSync.init({
-		proxy: "templator.loc",
+		proxy: "http://betterlyfetech.loc/",
 		port: 8080
 	});
 });

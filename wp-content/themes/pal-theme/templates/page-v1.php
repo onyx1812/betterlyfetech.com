@@ -46,6 +46,9 @@ get_header();
             elseif( get_row_layout() == 'testimonials' ):
               get_template_part( 'partials/layout', 'testimonials' );
 
+            elseif( get_row_layout() == 'testimonials_2' ):
+              get_template_part( 'partials/layout', 'testimonials_2' );
+
             elseif( get_row_layout() == 'note' ):
               get_template_part( 'partials/layout', 'note' );
 
