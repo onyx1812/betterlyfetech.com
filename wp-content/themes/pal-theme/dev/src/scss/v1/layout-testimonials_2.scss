@@ -14,29 +14,28 @@
     }
   }
   &-img{
-    flex: 1 40%;
-    max-width: 40%;
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom right;
+    @media(min-width:768px){
+      flex: 1 40%;
+      max-width: 40%;
+    }
     img{
       display: block;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      display: none;
+      width: 100%;
+      @media(min-width:768px){
+        display: none;
+      }
     }
   }
   &-info{
-    flex: 1 60%;
-    max-width: 60%;
     padding: 15px;
+    @media(min-width:768px){
+      flex: 1 60%;
+      max-width: 60%;
+    }
   }
   h4{
     margin: 0 0 5px;
