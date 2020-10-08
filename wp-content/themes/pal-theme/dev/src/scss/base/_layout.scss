@@ -2,6 +2,9 @@ body{
   font-size: 18px;
   line-height: 1.2;
   color: #000;
+  *{
+    word-break: break-all;
+  }
 }
 
 p{
@@ -31,6 +34,12 @@ em{
 h1, h2, h3, h4, h5, h6{
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+h1{
+  @media(max-width:767px){
+    margin-top: 0;
+  }
 }
 
 .btn{
