@@ -38,7 +38,7 @@
 
     <?php if( get_field('fonts') ): ?>
       <?php if( get_field('fonts') === 'BrandonText' ): ?>
-        <link rel="stylesheet" href="http://templator.loc/fonts/BrandonText/brandon-text.min.css">
+        <link rel="stylesheet" href="https://betterlyfetech.com/fonts/BrandonText/brandon-text.min.css">
         <style>html,body{font-family:'BrandonText'}</style>
       <?php elseif( get_field('fonts') === 'Lato' ): ?>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">

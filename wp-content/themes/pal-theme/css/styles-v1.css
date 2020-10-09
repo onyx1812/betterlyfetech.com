@@ -707,8 +707,6 @@ body {
   font-size: 18px;
   line-height: 1.2;
   color: #000; }
-  body * {
-    word-break: break-all; }
 
 p {
   line-height: 1.5;
@@ -819,6 +817,8 @@ sup {
     @media (min-width: 768px) {
       .main-footer small p {
         font-size: 11px; } }
+  .main-footer p {
+    word-break: break-all; }
 
 .footer-menu {
   display: -webkit-box;
