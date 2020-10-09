@@ -99,7 +99,11 @@ if( in_array($page_ID, $pages) ){
       }
 
       $unique_clicks_conversion = intval($unique_clicks) / intval($unique_visitors) * 100;
-      $unique_clicks_conversion_today = intval($unique_clicks_today) / intval($unique_visitors_today) * 100;
+      if(intval($unique_visitors_today) === 0){
+        $unique_clicks_conversion_today = 0;
+      } else{
+        $unique_clicks_conversion_today = intval($unique_clicks_today) / intval($unique_visitors_today) * 100;
+      }
       $current_user = wp_get_current_user();
       if( user_can( $current_user, 'administrator' ) ){
         echo '<script>
