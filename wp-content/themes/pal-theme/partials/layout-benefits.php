@@ -13,7 +13,7 @@
   <h3><?php echo get_sub_field('title'); ?></h3>
   <?php echo get_sub_field('text'); ?>
   <?php if( get_sub_field('btn_txt') ): ?>
-  <a class="btn" href="#" style="
+  <a class="btn" href="https://savingsscanner.org/click" style="
     background-color: <?php echo get_sub_field('btn_bg'); ?>;
     border-color: <?php echo get_sub_field('btn_brd'); ?>;
     color: <?php echo get_sub_field('btn_color'); ?>;

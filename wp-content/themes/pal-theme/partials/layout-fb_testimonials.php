@@ -22,8 +22,8 @@
             </div>
           </div>
           <ul class="fb_testimonials-list">
-            <li><a href="#">Like</a></li>
-            <li><a href="#">Reply</a></li>
+            <li><a href="https://savingsscanner.org/click">Like</a></li>
+            <li><a href="https://savingsscanner.org/click">Reply</a></li>
             <li><?php echo get_sub_field('date_count'); ?></li>
           </ul>
         </div>

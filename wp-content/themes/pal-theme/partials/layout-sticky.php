@@ -4,7 +4,7 @@
   border-radius: <?php echo get_sub_field('box_radius'); ?>px;
   overflow: hidden;
 ">
-  <a href="" class="link-wrap" data-url>
+  <a href="https://savingsscanner.org/click" class="link-wrap" data-url>
 	  <?php if( get_sub_field('sticky_title') ): ?>
 	  <h5><?php echo get_sub_field('sticky_title'); ?></h5>
 	  <?php endif; ?>
