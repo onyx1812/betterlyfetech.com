@@ -1,8 +1,18 @@
+<?php if( get_the_ID() == 1875 ): ?>
 <script>
   const queryString = window.location.search,
+    track = `https://www.bls29trk.com/69PDQW/3MZNPR/${queryString}`,
+    newLink = track;
+</script>
+<?php else: ?>
+<script>
+const queryString = window.location.search,
     track = `https://savingsscanner.org/click${queryString}`,
     newLink = track;
+</script>
+<?php endif; ?>
 
+<script>
   const addClickFunc = () => {
     var formData = new FormData();
 

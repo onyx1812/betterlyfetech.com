@@ -4,7 +4,11 @@
   border-radius: <?php echo get_sub_field('box_radius'); ?>px;
   overflow: hidden;
 ">
-  <a href="https://savingsscanner.org/click" class="link-wrap" data-url>
+<?php if( get_the_ID() == 1875 ): ?>
+<a href="https://www.bls29trk.com/69PDQW/3MZNPR/" class="link-wrap" data-url>
+<?php else: ?>
+<a href="https://savingsscanner.org/click" class="link-wrap" data-url>
+<?php endif; ?>
 	  <?php if( get_sub_field('sticky_title') ): ?>
 	  <h5><?php echo get_sub_field('sticky_title'); ?></h5>
 	  <?php endif; ?>

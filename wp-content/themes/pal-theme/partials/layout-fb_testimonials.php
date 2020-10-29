@@ -22,8 +22,13 @@
             </div>
           </div>
           <ul class="fb_testimonials-list">
+            <?php if( get_the_ID() == 1875 ): ?>
+            <li><a href="https://www.bls29trk.com/69PDQW/3MZNPR/">Like</a></li>
+            <li><a href="https://www.bls29trk.com/69PDQW/3MZNPR/">Reply</a></li>
+            <?php else: ?>
             <li><a href="https://savingsscanner.org/click">Like</a></li>
             <li><a href="https://savingsscanner.org/click">Reply</a></li>
+            <?php endif; ?>
             <li><?php echo get_sub_field('date_count'); ?></li>
           </ul>
         </div>

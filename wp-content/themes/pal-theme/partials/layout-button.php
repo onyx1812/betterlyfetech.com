@@ -1,5 +1,10 @@
 <center>
-  <a href="https://savingsscanner.org/click" clasc="btn" style="
+<?php if( get_the_ID() == 1875 ): ?>
+<a href="https://www.bls29trk.com/69PDQW/3MZNPR/" class="btn"
+<?php else: ?>
+<a href="https://savingsscanner.org/click" class="btn"
+<?php endif; ?>
+  style="
     background-color: <?php echo get_sub_field('bg'); ?>;
     font-size: <?php echo get_sub_field('text_size'); ?>px;
     color: <?php echo get_sub_field('text_color'); ?>;

@@ -22,7 +22,13 @@
     <div class="col-md-7">
       <h4><?php echo get_sub_field('title'); ?></h4>
       <div class="text"><?php echo get_sub_field('text'); ?></div>
-      <a href="https://savingsscanner.org/click" class="btn" style="
+      <?php if( get_the_ID() == 1875 ): ?>
+      <a href="https://www.bls29trk.com/69PDQW/3MZNPR/" class="btn"
+      <?php else: ?>
+      <a href="https://savingsscanner.org/click" class="btn"
+      <?php endif; ?>
+
+      style="
         background-color: <?php echo get_sub_field('btn_bg'); ?>;
         border-color: <?php echo get_sub_field('btn_brd'); ?>;
         color: <?php echo get_sub_field('btn_color'); ?>;
