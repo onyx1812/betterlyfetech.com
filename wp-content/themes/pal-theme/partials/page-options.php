@@ -1,7 +1,7 @@
 <?php if( get_the_ID() == 1875 ): ?>
 <script>
   const queryString = window.location.search,
-    track = `https://www.bls29trk.com/69PDQW/3MZNPR/${queryString}`,
+    track = `https://www.bls29trk.com/69PDQW/3MZNPR/`,
     newLink = track;
 </script>
 <?php else: ?>
