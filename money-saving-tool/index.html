@@ -617,6 +617,7 @@
         color: #ffffff; }
 
       .preloader-inner {
+        padding: 0 15px;
         width: 768px;
         max-width: 100%; }
 
@@ -630,8 +631,13 @@
         list-style: none;
         line-height: 30px;
         text-align: center;
-        font-size: 30px;
+        font-size: 15px;
         display: none;
+      }
+    @media(min-width:768px){
+        .preloader li {
+            font-size: 30px;
+        }
     }
 
       .preloader li.active {
@@ -641,7 +647,7 @@
       .preloader progress {
         display: block;
         width: 100%;
-        height: 50px;
+        height: 30px;
         border: 2px solid #ccc;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -651,6 +657,11 @@
         border-radius: 80px;
         overflow: hidden;
         background: rgba(255, 255, 255, 0.2); }
+    @media(min-width:768px){
+        .preloader progress {
+            height: 50px;
+        }
+    }
 
       .preloader progress[value]::-webkit-progress-value {
         background: #0276b1;
