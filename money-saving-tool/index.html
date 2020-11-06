@@ -634,14 +634,18 @@
         visibility: hidden;
         text-align: center;
         font-size: 0;
-        -webkit-transition: opacity 0.5s ease, font-size 0.5s ease;
-        transition: opacity 0.5s ease, font-size 0.5s ease; }
+        -webkit-transition: opacity 0.2s ease, font-size 0.2s ease;
+        transition: opacity 0.2s ease, font-size 0.2s ease;
+    }
 
       .preloader li.active {
         opacity: 1;
         visibility: visible;
         max-height: 200px;
-        font-size: 30px; }
+        font-size: 30px;
+        -webkit-transition: opacity 0.5s ease, font-size 0.5s ease;
+        transition: opacity 0.5s ease, font-size 0.5s ease;
+    }
 
       .preloader progress {
         display: block;
