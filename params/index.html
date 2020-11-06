@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 100px 0;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+    }
+    .container{
+      width: 1024px;
+      margin: 0 auto;
+    }
+    h1{
+      margin-bottom: 30px;
+    }
+    ul{
+      display: block;
+      list-style: none;
+      max-width: 500px;
+      margin-bottom: 60px;
+    }
+    li{
+      margin-bottom: 15px;
+    }
+    label{
+      display: block;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    input{
+      height: 50px;
+      border: none;
+      box-shadow: 0 0 16px rgba(0,0,0, .2);
+      border-radius: 8px;
+      padding: 0 15px;
+      font-size: 16px;
+      width: 100%;
+    }
+    button{
+      cursor: pointer;
+      outline: none !important;
+      margin-top: 30px;
+      background: #000;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 20px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+    button:hover{
+      opacity: .9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generate links</h1>
+    <ul>
+      <li>
+        <label for="url">URL:</label>
+        <input type="text" name="url" id="url" value="">
+      </li>
+      <li>
+        <label for="param_i">Param i:</label>
+        <input type="text" name="param_i" id="param_i" value="">
+      </li>
+      <li>
+        <label for="param_h">Param h:</label>
+        <input type="text" name="param_h" id="param_h" value="">
+      </li>
+      <li>
+        <button id="submit">Generate</button>
+      </li>
+    </ul>
+    <div id="result"></div>
+  </div>
+  <script>
+    document.getElementById('submit').addEventListener('click', e => {
+      e.preventDefault();
+      const
+        url = document.getElementById('url').value,
+        param_i = document.getElementById('param_i').value,
+        param_h = document.getElementById('param_h').value,
+        param_i_arr = param_i.split(','),
+        param_h_arr = param_h.split(',');
+
+      let result = '<h2>Generated links:</h2>';
+
+      console.log(url);
+      console.log(param_i_arr);
+      console.log(param_h_arr);
+
+      for(let a = 0; a < param_h_arr.length; a++){
+        for(let i = 0; i < param_i_arr.length; i++){
+          result += `<p>${url}?i=${param_i_arr[i]}&h=${param_h_arr[a]}</p>`;
+        }
+      }
+
+
+      document.getElementById('result').innerHTML = result;
+    });
+  </script>
+</body>
+</html>

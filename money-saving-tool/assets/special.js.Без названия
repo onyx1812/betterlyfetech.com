@@ -1,0 +1,169 @@
+$(document).ready(function() {
+    window.specialFuncs = {};
+
+    initAside($('.article .content .rhs'));
+    initNavScroller($('.article .content .scroller-nav'));
+    initLoader($('.article .content .loader.show'), 1500, hideLoaderListener);
+
+    window.specialFuncs.showLoader = function(loader, finishCallback) {
+        loader = $(loader);
+        finishCallback = typeof finishCallback === 'function' ? finishCallback : function() {};
+
+        if(loader.length > 0 && loader.attr('data-in-progress') === undefined) {
+            loader.attr('data-in-progress', '');
+            loader.find('.progress-line').css('width', '0%');
+            loader.removeClass('hide');
+
+            setTimeout(function() {
+                loader.addClass('show');
+                setTimeout(initLoader.bind(this, loader, 1500, function(loader) {
+                    loader.attr('data-in-progress', null);
+                    finishCallback(loader);
+                }), 500);
+            }, 50);
+
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    window.specialFuncs.hideLoader = function(loader) {
+        hideLoaderListener($(loader));
+    };
+
+    function initAside(asideList) {
+        if(asideList.length > 0) {
+            asideListener(asideList);
+            $(window).on('resize', asideListener.bind(this, asideList));
+        }
+    }
+
+    function initNavScroller(navList) {
+        if(navList.length > 0) {
+            navScrollerListener(navList);
+            $(window).on('scroll', navScrollerListener.bind(this, navList));
+            $(window).on('resize', navScrollerListener.bind(this, navList));
+
+            navList.find('a[href^="#"]').on('click', function(event) {
+                $($(this).attr('href')).scrollTo(500);
+                event.preventDefault();
+
+                setTimeout((function() {
+                    $(this).blur();
+                }).bind(this), 50);
+            });
+        }
+    }
+
+    function initLoader(loader, defTxtDelay, finishCallback) {
+        if(loader.length > 0) {
+            var txtList = loader.find('figcaption');
+            var progressLine = loader.find('.progress-line');
+            var attrColor = loader.attr('data-progress-color')
+            var attrDelay = Number(loader.attr('data-text-delay'));
+
+            defTxtDelay = isNaN(attrDelay) || attrDelay <= 0 ? defTxtDelay : attrDelay;
+            attrColor = attrColor !== undefined ? String(attrColor).trim() : '';
+
+            if(progressLine.length > 0) {
+                var txtDelay = txtList.length == 0 || isNaN(Number(txtList.eq(0).attr('data-delay'))) ?
+                    defTxtDelay : Number(txtList.eq(0).attr('data-delay'));
+                var progressStep = txtList.length == 0 ? 100 : 100 / txtList.length;
+                var progress = 1;
+
+                progressLine.css('transition-duration', (txtDelay * 0.9) + 'ms');
+                progressLine.css('width', (progress * progressStep) + '%');
+                if(attrColor.length > 0) {
+                    progressLine.css('background-color', attrColor);
+                }
+
+                setTimeout(
+                    loaderListener.bind(this, loader, progressLine, txtList, progress, progressStep, defTxtDelay, finishCallback),
+                    txtDelay
+                );
+            } else {
+                finishCallback(loader);
+            }
+        }
+    }
+
+    function loaderListener(loader, progressLine, txtList, progress, progressStep, defTxtDelay, finishCallback) {
+        if(txtList.length > progress) {
+            var txtDelay = isNaN(Number(txtList.eq(progress).attr('data-delay'))) ?
+                defTxtDelay : Number(txtList.eq(progress).attr('data-delay'));
+
+            txtList.addClass('hide');
+            txtList.eq(progress).removeClass('hide');
+
+            progress++;
+            progressLine.css('transition-duration', (txtDelay * 0.9) + 'ms');
+            progressLine.css('width', (progress * progressStep) + '%');
+
+            setTimeout(
+                loaderListener.bind(this, loader, progressLine, txtList, progress, progressStep, defTxtDelay, finishCallback),
+                txtDelay
+            );
+        } else {
+            finishCallback(loader);
+        }
+    }
+
+    function hideLoaderListener(loader) {
+        if(loader.length > 0) {
+            loader.removeClass('show');
+            setTimeout(loader.addClass.bind(loader, 'hide'), 500);
+        }
+    }
+
+    function navScrollerListener(navList) {
+        var srollPos = $(window).scrollTop();
+        var winHeight = $(window).height();
+        var winHalf = srollPos + winHeight / 2;
+
+        navList.each(function() {
+            var linkList = $(this).find('a[href^="#"]');
+
+            linkList.removeClass('active');
+            linkList.each(function(index) {
+                var link = $(this);
+                var target = $(link.attr('href'));
+
+                if(target.length > 0) {
+                    var targetPos = target.offset().top;
+                    if(targetPos >= srollPos && targetPos <= winHalf) {
+                        link.addClass('active');
+                        return false;
+                    } else if(targetPos > winHalf) {
+                        linkList.eq(index > 0 ? index - 1 : index).addClass('active');
+                        return false;
+                    } else if(index == linkList.length - 1) {
+                        link.addClass('active');
+                        return false;
+                    }
+                }
+            });
+        });
+    }
+
+    function asideListener(asideList) {
+        asideList.hide();
+
+        var fullWidth = $(document).outerWidth();
+        asideList.each(function() {
+            var aside = $(this);
+            var asideAlt = aside.attr('data-alt') ? $(aside.attr('data-alt')) : $();
+            var margSize = (fullWidth - aside.parent().outerWidth()) / 2;
+
+            if(aside.outerWidth() < margSize) {
+                aside.css({marginRight: margSize * -1});
+                aside.show();
+                asideAlt.hide();
+            } else {
+                asideAlt.show();
+            }
+        });
+
+        asideList.removeClass('none');
+    }
+});
