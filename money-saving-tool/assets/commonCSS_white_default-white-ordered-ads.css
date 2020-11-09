@@ -233,12 +233,11 @@ header a.but.bkg-blue:hover, header a.but.bkg-blue:focus {background-color: #347
 header a.but.bkg-green:hover, header a.but.bkg-green:focus {background-color: #69e27b;}
 header a.but.bkg-orange:hover, header a.but.bkg-orange:focus {background-color: #c64312;}
 
-footer {height: 345px; padding: 40px 0px;}
-footer.brd-dark {border-width: 1px 0px 0px 0px;}
-footer .logo .slogan {margin-left: 0px; margin-top: 5px;}
+footer {
+  padding: 40px 0px;
+  border-top: 1px solid #bdbdbd;
+}
 footer small {display: block;}
-footer .social-block .subscribe h6 {margin-bottom: 0px;}
-footer .social-block .subscribe p {margin-bottom: 10px;}
 
 main {padding: 60px 0px;}
 .spec1 main {padding: 30px 0px;}
