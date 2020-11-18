@@ -49,7 +49,7 @@ html, body {width: 100%; box-sizing: border-box;}
 html {height: 100%;}
 body {position: relative; min-height: 100%;}
 header, footer, main, section, article, aside {position: relative; width: 100%; height: auto; box-sizing: border-box;}
-footer {position: absolute; bottom: 0px;}
+/*footer {position: absolute; bottom: 0px;}*/
 
 .mobile {display: none !important;}
 .desktop {display: inherit;}
@@ -218,7 +218,8 @@ form.column select + button, form.column select + select
 @media screen and (max-width: 1130px) and (min-width: 941px) {
     .col-6 {width: calc(100% - 300px - 60px);}
     .col-7 {width: 150px;}
-}body {padding-bottom: 345px;}
+}
+/*body {padding-bottom: 345px;}*/
 body.fix-header {padding-top: 90px;}
 
 header {height: 90px;}
