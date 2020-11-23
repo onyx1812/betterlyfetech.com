@@ -1,16 +1,14 @@
-<?php if( get_the_ID() == 1875 ): ?>
 <script>
-  const queryString = window.location.search,
-    track = `https://www.bls29trk.com/69PDQW/3MZNPR/`,
-    newLink = track;
+  <?php if( get_the_ID() == 1875 ): ?>
+  const track = `https://www.bls29trk.com/69PDQW/3MZNPR/`;
+  <?php elseif( in_array(get_the_ID(), array(1910, 1972, 1974, 1908, 1592, 1140, 1609)) ): ?>
+  const track = `https://sakmtracker.com/click`;
+  <?php else: ?>
+  const track = `https://savingsscanner.org/click${queryString}`;
+  <?php endif; ?>
+  const queryString = window.location.search;
+  const newLink = track;
 </script>
-<?php else: ?>
-<script>
-const queryString = window.location.search,
-    track = `https://savingsscanner.org/click${queryString}`,
-    newLink = track;
-</script>
-<?php endif; ?>
 
 <script>
   const addClickFunc = () => {

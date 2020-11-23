@@ -24,6 +24,8 @@
       <div class="text"><?php echo get_sub_field('text'); ?></div>
       <?php if( get_the_ID() == 1875 ): ?>
       <a href="https://www.bls29trk.com/69PDQW/3MZNPR/" class="btn"
+      <?php elseif( in_array(get_the_ID(), array(1910, 1972, 1974, 1908, 1592, 1140, 1609)) ): ?>
+      <a href="https://sakmtracker.com/click" class="btn"
       <?php else: ?>
       <a href="https://savingsscanner.org/click" class="btn"
       <?php endif; ?>
