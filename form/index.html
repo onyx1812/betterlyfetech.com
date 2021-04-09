@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,4 +174,181 @@
 		document.getElementById('form').addEventListener('reset', playVideo);
 	</script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Best design</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			font-size: 14px;
+			font-family:tahoma;
+			background: #018383;
+			color: #000;
+			height: 100vh;
+			align-items: center;
+			justify-content: center;
+			display: flex;
+		}
+		*{
+			box-sizing: border-box;
+		}
+		h1{
+			font-size: 20px;
+			background: #010081;
+			margin: 0;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+			font-weight: 400;
+		}
+		.wrap{
+			background: #c5c5c5;
+			padding: 2px;
+			box-shadow: 4px 4px 4px rgba(0,0,0, .4);
+			max-width: 500px;
+			position: relative;
+		}
+		.wrap-video{
+			width: 564px;
+			max-width: 564px;
+			height: 319px;
+			position: fixed;
+			z-index: 9;
+			box-shadow: 0 0 400px 200px rgba(0,0,0, 1);
+		}
+		ul{
+			margin: 0;
+			padding: 30px;
+			min-width: 300px;
+			list-style: none;
+		}
+		li{
+			margin: 5px 0;
+		}
+		label{
+			display: block;
+		}
+		input, textarea{
+			background: #fff;
+			border: 1px solid #000;
+			resize: none;
+			padding: 0 10px;
+			height: 25px;
+			display: block;
+			width: 100%;
+		}
+		textarea{
+			height: 50px;
+		}
+		input[type="submit"], input[type="reset"]{
+			display: inline-block;
+			max-width: 100px;
+			height: 30px;
+			background: #c5c5c5;
+			border: none;
+			box-shadow: 2px 2px 2px rgba(0,0,0, .4);
+			margin: 15px 5px 0;
+		}
+		input[type="submit"]:hover, input[type="reset"]:hover{
+			box-shadow: 0 0 2px 2px rgba(0,0,0, .8);
+		}
+		.row{
+			margin-left: -15px;
+			margin-right: -15px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.col-6{
+			flex: 50%;
+			max-width: 50%;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.col-12{
+			flex: 100%;
+			max-width: 100%;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.text-center{
+			text-align: center;
+		}
+		.close {
+			position: absolute;
+			background: red;
+			color: #fff;
+			box-shadow: 2px 2px 2px #000;
+			text-decoration: none;
+			height: 30px;
+			width: 30px;
+			text-align: center;
+			line-height: 30px;
+			border-radius: 50%;
+			font-size: 24px;
+			font-weight: 400;
+			right: 10px;
+			top: 10px;
+			transform: rotate(45deg);
+		}
+		.hide{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<a href="#" class="close" id="close">+</a>
+		<h1>Submit form if you want 1 000 000$</h1>
+		<form id="form">
+			<ul class="row">
+				<li class="col-6">
+					<label for="fname">First name</label>
+					<input type="text" name="fname" id="fname">
+				</li>
+				<li class="col-6">
+					<label for="lname">Last name</label>
+					<input type="text" name="lname" id="lname">
+				</li>
+				<li class="col-6">
+					<label for="email">Email</label>
+					<input type="text" name="email" id="email">
+				</li>
+				<li class="col-6">
+					<label for="phone">Phone</label>
+					<input type="text" name="phone" id="phone">
+				</li>
+				<li class="col-12">
+					<label for="msg">MSG</label>
+					<textarea name="msg" id="msg" ></textarea>
+				</li>
+				<li class="col-12 text-center">
+					<input type="submit" value="SUBMIT">
+					<input type="reset" value="RESET">
+				</li>
+			</ul>
+		</form>
+	</div>
+	<div class="wrap wrap-video hide" id="wrapVideo">
+		<video id="video" src="./video.mp4" width="100%"></video>
+	</div>
+	<script>
+		const playVideo = e => {
+			e.preventDefault();
+			document.getElementById('wrapVideo').classList.remove('hide');
+			document.getElementById('video').play();
+			setTimeout(function(){
+				document.getElementById('wrapVideo').classList.add('hide');
+			}, 2000);
+		}
+
+-		document.getElementById('close').addEventListener('click', playVideo);
+		document.getElementById('form').addEventListener('submit', playVideo);
+		document.getElementById('form').addEventListener('reset', playVideo);
+	</script>
+</body>
+>>>>>>> f7500f2c99fc2f55edfc823de06c9bd0c816b38e
 </html>
